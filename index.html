@@ -1,849 +1,951 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YSL Scent in Motion | Modular Luxury Fragrance</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ysl-black: #0a0a0a;
-            --ysl-scarlet: #8B0000;
-            --ysl-scarlet-dark: #4a0000;
-            --ysl-gold: #d4af37;
-            --ysl-gold-light: #f4e8c1;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);
-            background-attachment: fixed;
-            color: white;
-            overflow-x: hidden;
-        }
-        
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .text-gold {
-            color: var(--ysl-gold);
-        }
-        
-        .bg-gold {
-            background-color: var(--ysl-gold);
-        }
-        
-        .border-gold {
-            border-color: var(--ysl-gold);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #d4af37 0%, #f4e8c1 50%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(26,0,0,0.8) 50%, rgba(10,10,10,1) 100%);
-        }
-        
-        .magnetic-hover {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .magnetic-hover:hover {
-            transform: translateY(-2px);
-        }
-        
-        .scent-bubble {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .pulse-gold {
-            animation: pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse-gold {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .7; }
-        }
-        
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.15) 0%, rgba(10, 10, 10, 0.4) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 0, 0, 0.2);
-        }
-        
-        .capsule-slot {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .capsule-slot.active {
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3) 0%, rgba(212, 175, 55, 0.1) 100%);
-            border-color: var(--ysl-gold);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(139, 0, 0, 0.2);
-        }
-        
-        .scent-note {
-            transition: all 0.3s ease;
-        }
-        
-        .scent-note:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3), 0 0 20px rgba(139, 0, 0, 0.3);
-            border-color: rgba(212, 175, 55, 0.5);
-        }
-        
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-        
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .ai-scanner {
-            background: conic-gradient(from 0deg, transparent, var(--ysl-gold), transparent, var(--ysl-scarlet), transparent);
-            animation: scan 3s linear infinite;
-        }
-        
-        @keyframes scan {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .mood-ring {
-            transition: all 0.5s ease;
-        }
-        
-        .custom-cursor {
-            cursor: none;
-        }
-        
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--ysl-gold);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-        }
-        
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--ysl-gold);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.1s ease;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YSL Scent in Motion | Modular Luxury Fragrance</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --scanner-color: var(--ysl-gold);
+
+      --ysl-black:#0a0a0a;
+      --ysl-scarlet:#8B0000;
+      --ysl-scarlet-dark:#4a0000;
+      --ysl-gold:#d4af37;
+      --ysl-gold-light:#f4e8c1;
+      --ysl-purple:#6D28D9;
+      --ysl-purple-dark:#2E1065;
+      --ysl-purple-soft:#A78BFA;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background: radial-gradient(1000px 600px at 20% 10%, rgba(139,0,0,.18), transparent 60%),
+                  radial-gradient(900px 500px at 80% 30%, rgba(212,175,55,.12), transparent 55%),
+                  radial-gradient(900px 520px at 65% 85%, rgba(109,40,217,.14), transparent 55%),
+                  linear-gradient(135deg,#0a0a0a 0%, #1a0000 45%, #0a0a0a 100%);
+      background-attachment: fixed;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .font-serif{font-family:'Playfair Display',serif;}
+    .text-gold{color:var(--ysl-gold);}
+    .bg-gold{background-color:var(--ysl-gold);}
+    .border-gold{border-color:var(--ysl-gold);}
+    .text-purple{color:var(--ysl-purple-soft);}
+    .border-purple{border-color:var(--ysl-purple-soft);}
+
+    .gradient-text{
+      background:linear-gradient(135deg,#d4af37 0%, #f4e8c1 50%, #d4af37 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    .hero-gradient{
+      background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,.6) 35%, rgba(10,10,10,1) 100%);
+    }
+
+    .magnetic-hover{transition:transform .3s cubic-bezier(.4,0,.2,1);}
+    .magnetic-hover:hover{transform:translateY(-2px);}
+
+    .glass-panel{
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.14) 0%, rgba(10, 10, 10, 0.45) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.30);
+      box-shadow: 0 8px 32px rgba(139, 0, 0, 0.22), 0 10px 40px rgba(109, 40, 217, 0.12);
+    }
+
+    .scroll-reveal{
+      opacity:0;
+      transform:translateY(30px);
+      transition:all .8s cubic-bezier(.5,0,0,1);
+    }
+    .scroll-reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .ai-scanner{
+      background:conic-gradient(from 0deg,
+        transparent 0deg,
+        var(--scanner-color) 90deg,
+        transparent 180deg,
+        var(--scanner-color) 270deg,
+        transparent 360deg
+      );
+      animation:scan 3s linear infinite;
+    }
+    @keyframes scan{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+    .capsule-slot{transition:all .35s cubic-bezier(.4,0,.2,1);}
+    .capsule-slot.active{
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.30) 0%, rgba(212, 175, 55, 0.10) 100%);
+      border-color: var(--ysl-gold);
+      box-shadow: 0 0 20px rgba(212,175,55,.25), 0 0 40px rgba(139,0,0,.18);
+    }
+
+    .scent-note{transition:all .25s ease;}
+    .scent-note:hover{
+      transform:scale(1.04);
+      box-shadow:0 10px 30px rgba(212,175,55,.20), 0 0 18px rgba(139,0,0,.22), 0 0 22px rgba(109,40,217,.18);
+      border-color:rgba(212,175,55,.5);
+    }
+
+    /* Custom cursor (desktop only) */
+    .custom-cursor{cursor:none;}
+    .cursor-dot{
+      width:8px;height:8px;background-color:var(--ysl-gold);
+      border-radius:9999px;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;
+    }
+    .cursor-outline{
+      width:40px;height:40px;border:1px solid var(--ysl-gold);
+      border-radius:9999px;position:fixed;pointer-events:none;z-index:9998;transition:all .1s ease;
+    }
+
+    /* Micro “motion” accents */
+    .drift{animation:drift 8s ease-in-out infinite;}
+    @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  
+    /* Mood change polish */
+    @keyframes glowPulse {
+      0%   { box-shadow: 0 0 0 rgba(0,0,0,0); transform: translateY(0); }
+      35%  { box-shadow: 0 0 24px rgba(212,175,55,.22), 0 0 34px rgba(109,40,217,.22), 0 0 18px rgba(255,255,255,.08); transform: translateY(-1px); }
+      100% { box-shadow: 0 0 0 rgba(0,0,0,0); transform: translateY(0); }
+    }
+    .glow-pulse { animation: glowPulse 900ms ease-out; }
+
+    .particle-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 5;
+    }
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: var(--scanner-color);
+      box-shadow: 0 0 12px var(--scanner-color);
+      opacity: 0.0;
+      animation: particleBurst 900ms ease-out forwards;
+      filter: saturate(1.15);
+    }
+    @keyframes particleBurst {
+      0%   { transform: translate(var(--sx), var(--sy)) scale(.6); opacity: 0; }
+      15%  { opacity: .95; }
+      100% { transform: translate(var(--ex), var(--ey)) scale(0); opacity: 0; }
+    }
+
+  </style>
 </head>
+
 <body class="custom-cursor">
-    <!-- Custom Cursor -->
-    <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
-    <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
+  <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <span class="font-serif text-2xl tracking-wider font-bold text-white">YSL</span>
-                <span class="text-gold text-xs tracking-[0.3em] uppercase hidden sm:block">Beauty</span>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <span class="font-serif text-2xl tracking-wider font-bold text-white">YSL</span>
+        <span class="text-gold text-xs tracking-[0.3em] uppercase hidden sm:block">Beauty</span>
+        <span class="hidden md:inline-flex items-center ml-3 px-3 py-1 rounded-full border border-gold/30 bg-gold/10 text-[10px] tracking-[0.25em] uppercase text-gold">
+          Concept Prototype
+        </span>
+      </div>
+
+      <div class="hidden md:flex items-center gap-8 text-sm tracking-widest uppercase">
+        <a href="#system" class="hover:text-gold transition-colors">The System</a>
+        <a href="#ritual" class="hover:text-gold transition-colors">The Ritual</a>
+        <a href="#ai-translator" class="hover:text-gold transition-colors">AI Translator</a>
+        <a href="#collection" class="hover:text-gold transition-colors">Collection</a>
+        <a href="#sustainability" class="hover:text-gold transition-colors">Sustainability</a>
+      </div>
+
+      <button class="md:hidden text-white" id="mobile-menu-btn" aria-label="Open menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+      <button class="hidden md:flex items-center gap-2 px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 text-xs tracking-widest uppercase">
+        Request a Demo
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden bg-black border-t border-white/10" id="mobile-menu">
+      <div class="flex flex-col p-6 gap-4 text-sm tracking-widest uppercase">
+        <a href="#system" class="hover:text-gold transition-colors">The System</a>
+        <a href="#ritual" class="hover:text-gold transition-colors">The Ritual</a>
+        <a href="#ai-translator" class="hover:text-gold transition-colors">AI Translator</a>
+        <a href="#collection" class="hover:text-gold transition-colors">Collection</a>
+        <a href="#sustainability" class="hover:text-gold transition-colors">Sustainability</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative h-screen w-full overflow-hidden">
+    <div class="absolute inset-0">
+      <!-- Swap this first: assets/hero.jpg -->
+      <img src="assets/hero.png" alt="Scent in Motion hero" class="w-full h-full object-cover opacity-60" />
+      <div class="absolute inset-0 hero-gradient"></div>
+
+      <!-- Subtle “motion” glints -->
+      <div class="absolute -top-24 left-10 w-80 h-80 rounded-full blur-3xl bg-red-900/20 drift"></div>
+      <div class="absolute top-44 -right-12 w-96 h-96 rounded-full blur-3xl bg-yellow-900/10 drift" style="animation-delay:1.4s"></div>
+    </div>
+
+    <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 max-w-6xl mx-auto">
+      <div class="scroll-reveal">
+        <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">Couture base · curated modules · adaptive ritual</p>
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+          Scent in <span class="gradient-text italic">Motion</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+          One signature composition, authored by a perfumer.<br />
+          <span class="text-white">Shift your emotional tone with precision modules, not chaotic layering.</span>
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button onclick="scrollToSection('system')" class="px-8 py-4 bg-gold text-black font-medium tracking-widest uppercase text-sm hover:bg-white transition-all duration-300 magnetic-hover">
+            Discover the System
+          </button>
+          <button onclick="scrollToSection('ai-translator')" class="px-8 py-4 border border-white/30 text-white tracking-widest uppercase text-sm hover:border-gold hover:text-gold transition-all duration-300 magnetic-hover">
+            Try the AI Translator
+          </button>
+        </div>
+
+        <div class="mt-10 inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white/5 border border-white/10">
+          <i data-lucide="sparkles" class="w-4 h-4 text-gold"></i>
+          <p class="text-xs tracking-widest uppercase text-gray-300">
+            Refillable dual-chamber vessel · one-handed luxury
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <i data-lucide="chevron-down" class="w-6 h-6 text-gold"></i>
+    </div>
+  </section>
+
+  <!-- The Modular System -->
+  <section id="system" class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-red-900/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-red-950/30 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">The Architecture</p>
+        <h2 class="font-serif text-4xl md:text-5xl mb-6">Three Elements. Controlled Expression.</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          A single “couture base” remains intact. Capsules modulate mood with curated precision, preserving authorship and integrity.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- 01 -->
+        <div class="glass-panel p-8 rounded-2xl scroll-reveal group hover:border-gold/50 transition-all duration-500">
+          <div class="h-64 mb-6 relative overflow-hidden rounded-xl">
+            <img src="assets/system-base.png" alt="Couture Base" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <span class="text-gold text-xs tracking-widest uppercase">01</span>
             </div>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm tracking-widest uppercase">
-                <a href="#system" class="hover:text-gold transition-colors">The System</a>
-                <a href="#ai-translator" class="hover:text-gold transition-colors">AI Translator</a>
-                <a href="#collection" class="hover:text-gold transition-colors">Collection</a>
-                <a href="#sustainability" class="hover:text-gold transition-colors">Sustainability</a>
+          </div>
+          <h3 class="font-serif text-2xl mb-3">Couture Base</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            Sculptural, ergonomic vessel. Magnetic self-seating cap. Low-force spray. Designed for effortless one-handed use.
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Ergonomic</span>
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Magnetic</span>
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Inclusive</span>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div class="glass-panel p-8 rounded-2xl scroll-reveal group hover:border-gold/50 transition-all duration-500" style="transition-delay: 100ms;">
+          <div class="h-64 mb-6 relative overflow-hidden rounded-xl">
+            <img src="assets/system-capsules.png" alt="Layering Capsules" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <span class="text-gold text-xs tracking-widest uppercase">02</span>
             </div>
-            
-            <button class="md:hidden text-white" id="mobile-menu-btn">
-                <i data-lucide="menu" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-serif text-2xl mb-3">Modulation Capsules</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            Curated modules (Iris · Sandalwood · Amber/Amberwood) snap in. Your base stays signature; your mood evolves.
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Curated</span>
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Snap-in</span>
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Portable</span>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="glass-panel p-8 rounded-2xl scroll-reveal group hover:border-gold/50 transition-all duration-500" style="transition-delay: 200ms;">
+          <div class="h-64 mb-6 relative overflow-hidden rounded-xl">
+            <img src="assets/system-ai.png" alt="AI Mood Translator" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <span class="text-gold text-xs tracking-widest uppercase">03</span>
+            </div>
+          </div>
+          <h3 class="font-serif text-2xl mb-3">AI Mood Translator</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            A digital companion that maps context → emotion → capsule pairing. It learns your preferences over time.
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Adaptive</span>
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Personal</span>
+            <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Guided</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Ritual (new) -->
+  <section id="ritual" class="py-24 px-6" style="background: linear-gradient(135deg, #0a0a0a 0%, #2a0000 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">The Ritual</p>
+        <h2 class="font-serif text-4xl md:text-5xl mb-6">A signature, in phases.</h2>
+        <p class="text-gray-400 max-w-3xl mx-auto">
+          Designed for real life: morning focus, afternoon authority, evening magnetism. Each shift is intentional, not improvised.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="glass-panel rounded-2xl p-8 scroll-reveal">
+          <div class="w-12 h-12 rounded-xl bg-gold/15 border border-gold/30 flex items-center justify-center mb-6">
+            <i data-lucide="flask-conical" class="w-6 h-6 text-gold"></i>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">1) Choose your base</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            One authored composition. A true signature that stays recognizable across every modulation.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-8 scroll-reveal" style="transition-delay: 100ms;">
+          <div class="w-12 h-12 rounded-xl bg-gold/15 border border-gold/30 flex items-center justify-center mb-6">
+            <i data-lucide="package-plus" class="w-6 h-6 text-gold"></i>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">2) Snap in a module</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Iris for mindful calm. Sandalwood for grounded power. Amber/Amberwood for sensual impact.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-8 scroll-reveal" style="transition-delay: 200ms;">
+          <div class="w-12 h-12 rounded-xl bg-gold/15 border border-gold/30 flex items-center justify-center mb-6">
+            <i data-lucide="sparkle" class="w-6 h-6 text-gold"></i>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">3) Adjust in motion</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Refresh between moments. No extra bottle. No over-layering. Just a clean, guided evolution.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Mood Translator Interactive -->
+  <section id="ai-translator" class="py-24 px-6 relative" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0000 60%, #0a0a0a 100%);">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="scroll-reveal">
+          <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">Digital Companion</p>
+          <h2 class="font-serif text-4xl md:text-5xl mb-6">AI Mood Translator</h2>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            Pick a moment. The translator returns a controlled pairing: base + module, with an intensity cue.
+            (Prototype demo logic below — swap in your own model later.)
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mb-8">
+            <div>
+              <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">Moment</label>
+              <select id="moment" class="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white focus:outline-none focus:border-gold transition-colors">
+                <option>Morning focus</option>
+                <option>Boardroom authority</option>
+                <option>Creative sprint</option>
+                <option>Date night</option>
+                <option>After-hours energy</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">Mood</label>
+              <select id="mood" class="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white focus:outline-none focus:border-gold transition-colors">
+                <option>Calm</option>
+                <option>Confident</option>
+                <option>Bold</option>
+                <option>Romantic</option>
+                <option>Inspired</option>
+              </select>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">Intensity</label>
+              <input id="intensity" type="range" min="1" max="3" value="2" class="w-full accent-yellow-500" />
+              <div class="flex justify-between text-[11px] text-gray-500 mt-1">
+                <span>Soft</span><span>Balanced</span><span>Statement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-3 flex-col sm:flex-row">
+            <button onclick="translateMood()" class="flex-1 py-4 bg-gold text-black font-medium tracking-widest uppercase text-sm hover:bg-white transition-all duration-300 rounded-xl">
+              Translate
             </button>
-            
-            <button class="hidden md:flex items-center gap-2 px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 text-xs tracking-widest uppercase">
-                Pre-Order
+            <button onclick="randomizeTranslator()" class="py-4 px-6 border border-white/20 hover:border-gold hover:text-gold transition-all duration-300 rounded-xl text-sm tracking-widest uppercase">
+              Surprise Me
             </button>
+          </div>
+
+          <p class="text-xs text-gray-600 mt-4">
+            Note: this page uses placeholder images in <code class="text-gray-400">assets/</code>. See “How to swap images” below.
+          </p>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-black border-t border-white/10" id="mobile-menu">
-            <div class="flex flex-col p-6 gap-4 text-sm tracking-widest uppercase">
-                <a href="#system" class="hover:text-gold transition-colors">The System</a>
-                <a href="#ai-translator" class="hover:text-gold transition-colors">AI Translator</a>
-                <a href="#collection" class="hover:text-gold transition-colors">Collection</a>
-                <a href="#sustainability" class="hover:text-gold transition-colors">Sustainability</a>
+
+        <div class="scroll-reveal">
+          <div class="glass-panel rounded-3xl p-8 relative overflow-hidden">
+            <div class="particle-layer" id="particle-layer"></div>
+            <div class="absolute inset-0 ai-scanner opacity-20"></div>
+
+            <div class="relative z-10">
+              <div class="text-center mb-8">
+                <div class="w-32 h-32 mx-auto rounded-full border-2 border-gold/30 relative flex items-center justify-center mb-4" id="mood-ring">
+                  <div class="w-24 h-24 rounded-full bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center transition-all duration-500" id="mood-icon-container">
+                    <i data-lucide="sparkles" class="w-10 h-10 text-gold" id="mood-icon"></i>
+                  </div>
+                  <div class="absolute inset-0 rounded-full border border-gold/20" style="animation:pulse 2.2s ease-in-out infinite; opacity:.85"></div>
+                </div>
+
+                <p class="text-gold text-xs tracking-widest uppercase mb-2">Recommendation</p>
+                <h3 class="font-serif text-2xl" id="rec-title">Calm & Focused</h3>
+                <p class="text-sm text-gray-400 mt-2" id="rec-sub">Morning focus · Balanced</p>
+              </div>
+
+              <div class="space-y-4 mb-6">
+                <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10" id="rec-row-base">
+                  <span class="text-sm text-gray-400">Base</span>
+                  <span class="text-gold font-medium" id="rec-base">Onde Noire / Aura Vive</span>
+                </div>
+
+                <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10" id="rec-row-module">
+                  <span class="text-sm text-gray-400">Module</span>
+                  <span class="text-gold font-medium" id="rec-module">Iris</span>
+                </div>
+
+                <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10" id="rec-row-cue">
+                  <span class="text-sm text-gray-400">Cue</span>
+                  <span class="text-gold font-medium" id="rec-cue">2 sprays + 1 refresh</span>
+                </div>
+              </div>
+
+              <button onclick="scrollToSection('collection')" class="w-full py-4 border border-gold/40 hover:border-gold hover:text-gold transition-all duration-300 rounded-xl text-sm tracking-widest uppercase">
+                See it in the Collection
+              </button>
             </div>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="relative h-screen w-full overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="http://static.photos/black/1920x1080/1" alt="Luxury fragrance bottles" class="w-full h-full object-cover opacity-60">
-            <div class="absolute inset-0 hero-gradient"></div>
-        </div>
-        
-        <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 max-w-6xl mx-auto">
-            <div class="scroll-reveal">
-                <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">YSL Beauty Innovation</p>
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-                    Scent in <span class="gradient-text italic">Motion</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
-                    The world's first modular luxury fragrance system.<br>
-                    <span class="text-white">Couture Base · Layering Capsules · AI Mood Translator</span>
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="scrollToSection('system')" class="px-8 py-4 bg-gold text-black font-medium tracking-widest uppercase text-sm hover:bg-white transition-all duration-300 magnetic-hover">
-                        Discover the System
-                    </button>
-                    <button onclick="scrollToSection('collection')" class="px-8 py-4 border border-white/30 text-white tracking-widest uppercase text-sm hover:border-gold hover:text-gold transition-all duration-300 magnetic-hover">
-                        View Collection
-                    </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Collection (kept, lightly tightened) -->
+  <section id="collection" class="py-24 px-6" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0000 30%, #0a0a0a 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">The Collection</p>
+        <h2 class="font-serif text-4xl md:text-5xl mb-6">Choose Your Signature</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Two bases. Three modules. Designed to stay unmistakably “you.”</p>
+      </div>
+
+      <!-- Onde Noire -->
+      <div class="mb-20 scroll-reveal">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="order-2 lg:order-1">
+            <div class="glass-panel rounded-3xl p-8">
+              <div class="flex items-center gap-4 mb-6">
+                <span class="text-gold text-xs tracking-widest uppercase px-3 py-1 border border-gold/30 rounded-full">For Him</span>
+              </div>
+              <h3 class="font-serif text-4xl mb-2">Onde Noire</h3>
+              <p class="text-gray-400 mb-6 italic">“The Black Wave”</p>
+
+              <div class="mb-6">
+                <p class="text-sm text-gold uppercase tracking-wider mb-3">Couture Base Notes</p>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="leaf" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">Bergamot</span>
+                  </div>
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="flower-2" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">Lavender</span>
+                  </div>
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="trees" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">Cedarwood</span>
+                  </div>
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="flame" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">Ambroxan</span>
+                  </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i data-lucide="chevron-down" class="w-6 h-6 text-gold"></i>
-        </div>
-    </section>
+              </div>
 
-    <!-- The Modular System -->
-    <section id="system" class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-red-900/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-red-950/30 rounded-full blur-3xl"></div>
-        
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 scroll-reveal">
-                <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">The Architecture</p>
-                <h2 class="font-serif text-4xl md:text-5xl mb-6">Three Elements. Infinite Expressions.</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Engineered for intuitive one-handed use, merging portability, inclusivity, and personalization.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <!-- Couture Base -->
-                <div class="glass-panel p-8 rounded-2xl scroll-reveal group hover:border-gold/50 transition-all duration-500">
-                    <div class="h-64 mb-6 relative overflow-hidden rounded-xl">
-                        <img src="http://static.photos/minimal/640x360/42" alt="Couture Base" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="text-gold text-xs tracking-widest uppercase">01</span>
-                        </div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-3">Couture Base</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                        A sculptural, ergonomic bottle with magnetic closure designed for intuitive one-handed use. Effortless application whether commuting, traveling, or transitioning between moments.
-                    </p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Ergonomic</span>
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Magnetic</span>
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Accessible</span>
-                    </div>
+              <div class="mb-6">
+                <p class="text-sm text-gold uppercase tracking-wider mb-3">Modules</p>
+                <div class="space-y-2">
+                  <button onclick="selectCapsule('onde','iris')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="iris">
+                    <div><span class="font-medium block">Iris</span><span class="text-xs text-gray-500">Mindful, clean, refined</span></div>
+                    <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
+                  </button>
+                  <button onclick="selectCapsule('onde','sandalwood')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="sandalwood">
+                    <div><span class="font-medium block">Sandalwood</span><span class="text-xs text-gray-500">Grounded, powerful, calm</span></div>
+                    <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
+                  </button>
+                  <button onclick="selectCapsule('onde','amberwood')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="amberwood">
+                    <div><span class="font-medium block">Amberwood</span><span class="text-xs text-gray-500">Impact, warmth, presence</span></div>
+                    <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
+                  </button>
                 </div>
+              </div>
 
-                <!-- Layering Capsules -->
-                <div class="glass-panel p-8 rounded-2xl scroll-reveal group hover:border-gold/50 transition-all duration-500" style="transition-delay: 100ms;">
-                    <div class="h-64 mb-6 relative overflow-hidden rounded-xl">
-                        <img src="http://static.photos/cosmetic/640x360/7" alt="Layering Capsules" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="text-gold text-xs tracking-widest uppercase">02</span>
-                        </div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-3">Layering Capsules</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                        Two interchangeable fragrance capsules allow users to blend and evolve their scent throughout the day. One vessel, infinite combinations. No need to carry multiple bottles.
-                    </p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Modular</span>
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Interchangeable</span>
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Portable</span>
-                    </div>
-                </div>
-
-                <!-- AI Mood Translator -->
-                <div class="glass-panel p-8 rounded-2xl scroll-reveal group hover:border-gold/50 transition-all duration-500" style="transition-delay: 200ms;">
-                    <div class="h-64 mb-6 relative overflow-hidden rounded-xl">
-                        <img src="http://static.photos/technology/640x360/99" alt="AI Interface" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="text-gold text-xs tracking-widest uppercase">03</span>
-                        </div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-3">AI Mood Translator</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                        A digital interface analyzing mood and context to recommend personalized scent combinations. Data-informed experiences for the next generation of luxury consumers.
-                    </p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">AI-Powered</span>
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Personalized</span>
-                        <span class="px-3 py-1 border border-white/10 rounded-full text-xs text-gray-400">Adaptive</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Mood Translator Interactive Demo -->
-    <section id="ai-translator" class="py-24 px-6 relative" style="background: linear-gradient(135deg, #0a0a0a 0%, #2a0000 100%);">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="scroll-reveal">
-                    <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">Digital Innovation</p>
-                    <h2 class="font-serif text-4xl md:text-5xl mb-6">AI Mood Translator</h2>
-                    <p class="text-gray-400 mb-8 leading-relaxed">
-                        Experience the future of fragrance. Our AI analyzes your current mood, environment, and schedule to recommend the perfect scent combination from your modular system.
-                    </p>
-                    
-                    <div class="space-y-4 mb-8">
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="scan" class="w-4 h-4 text-gold"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">Real-time Analysis</h4>
-                                <p class="text-sm text-gray-500">Biometric and contextual data processing</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="sparkles" class="w-4 h-4 text-gold"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">Smart Recommendations</h4>
-                                <p class="text-sm text-gray-500">Personalized capsule combinations</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="refresh-cw" class="w-4 h-4 text-gold"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">Adaptive Learning</h4>
-                                <p class="text-sm text-gray-500">Improves with your preferences over time</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="scroll-reveal">
-                    <div class="glass-panel rounded-3xl p-8 relative overflow-hidden">
-                        <div class="absolute inset-0 ai-scanner opacity-20"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="text-center mb-8">
-                                <div class="w-32 h-32 mx-auto rounded-full border-2 border-gold/30 relative flex items-center justify-center mb-4" id="mood-ring">
-                                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center mood-ring" id="mood-icon-container">
-                                        <i data-lucide="smile" class="w-10 h-10 text-gold" id="mood-icon"></i>
-                                    </div>
-                                    <div class="absolute inset-0 rounded-full border border-gold/20 pulse-gold"></div>
-                                </div>
-                                <p class="text-gold text-xs tracking-widest uppercase mb-2">Current Mood</p>
-                                <h3 class="font-serif text-2xl" id="mood-text">Calm & Focused</h3>
-                            </div>
-
-                            <div class="space-y-4 mb-6">
-                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10">
-                                    <span class="text-sm text-gray-400">Time of Day</span>
-                                    <span class="text-gold font-medium" id="time-display">Morning</span>
-                                </div>
-                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10">
-                                    <span class="text-sm text-gray-400">Activity Level</span>
-                                    <span class="text-gold font-medium">Moderate</span>
-                                </div>
-                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10">
-                                    <span class="text-sm text-gray-400">Recommended Blend</span>
-                                    <span class="text-gold font-medium" id="blend-rec">Base + Iris</span>
-                                </div>
-                            </div>
-
-                            <button onclick="analyzeMood()" class="w-full py-4 bg-gold text-black font-medium tracking-widest uppercase text-sm hover:bg-white transition-all duration-300 rounded-xl">
-                                Analyze My Mood
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product Collection -->
-    <section id="collection" class="py-24 px-6" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0000 30%, #0a0a0a 100%);">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 scroll-reveal">
-                <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">The Collection</p>
-                <h2 class="font-serif text-4xl md:text-5xl mb-6">Choose Your Expression</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Two signature scents. Three modular augmentations. Infinite possibilities.</p>
-            </div>
-
-            <!-- Onde Noire - Men's -->
-            <div class="mb-20 scroll-reveal">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1">
-                        <div class="glass-panel rounded-3xl p-8">
-                            <div class="flex items-center gap-4 mb-6">
-                                <span class="text-gold text-xs tracking-widest uppercase px-3 py-1 border border-gold/30 rounded-full">For Him</span>
-                            </div>
-                            <h3 class="font-serif text-4xl mb-2">Onde Noire</h3>
-                            <p class="text-gray-400 mb-6 italic">"The Black Wave"</p>
-                            
-                            <div class="mb-6">
-                                <p class="text-sm text-gold uppercase tracking-wider mb-3">Couture Base Notes</p>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="leaf" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">Bergamot</span>
-                                    </div>
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="flower-2" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">Lavender</span>
-                                    </div>
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="trees" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">Cedarwood</span>
-                                    </div>
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="flame" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">Ambroxan</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-6">
-                                <p class="text-sm text-gold uppercase tracking-wider mb-3">Layering Capsules</p>
-                                <div class="space-y-2">
-                                    <button onclick="selectCapsule('onde', 'iris')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="iris">
-                                        <div>
-                                            <span class="font-medium block">Iris Module</span>
-                                            <span class="text-xs text-gray-500">Powdery, elegant, sophisticated</span>
-                                        </div>
-                                        <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
-                                    </button>
-                                    <button onclick="selectCapsule('onde', 'sandalwood')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="sandalwood">
-                                        <div>
-                                            <span class="font-medium block">Sandalwood Module</span>
-                                            <span class="text-xs text-gray-500">Creamy, woody, meditative</span>
-                                        </div>
-                                        <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
-                                    </button>
-                                    <button onclick="selectCapsule('onde', 'amberwood')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="amberwood">
-                                        <div>
-                                            <span class="font-medium block">Amberwood Module</span>
-                                            <span class="text-xs text-gray-500">Warm, resinous, powerful</span>
-                                        </div>
-                                        <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                                <span class="text-2xl font-serif">$185</span>
-                                <button class="px-6 py-3 bg-gold text-black text-sm tracking-widest uppercase font-medium hover:bg-white transition-colors rounded-full">
-                                    Configure
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-1 lg:order-2 relative">
-                        <img src="http://static.photos/cosmetic/800x600/11" alt="Onde Noire Bottle" class="w-full h-[600px] object-cover rounded-3xl opacity-90">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-3xl"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <div class="scent-bubble inline-block px-4 py-2 bg-gold/20 backdrop-blur-md border border-gold/30 rounded-full text-gold text-xs tracking-widest uppercase">
-                                Woodsy Base
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Aura Vive - Women's -->
-            <div class="scroll-reveal">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="relative">
-                        <img src="http://static.photos/cosmetic/800x600/22" alt="Aura Vive Bottle" class="w-full h-[600px] object-cover rounded-3xl opacity-90">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-3xl"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <div class="scent-bubble inline-block px-4 py-2 bg-gold/20 backdrop-blur-md border border-gold/30 rounded-full text-gold text-xs tracking-widest uppercase">
-                                Floral Base
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="glass-panel rounded-3xl p-8">
-                            <div class="flex items-center gap-4 mb-6">
-                                <span class="text-gold text-xs tracking-widest uppercase px-3 py-1 border border-gold/30 rounded-full">For Her</span>
-                            </div>
-                            <h3 class="font-serif text-4xl mb-2">Aura Vive</h3>
-                            <p class="text-gray-400 mb-6 italic">"The Living Aura"</p>
-                            
-                            <div class="mb-6">
-                                <p class="text-sm text-gold uppercase tracking-wider mb-3">Couture Base Notes</p>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="leaf" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">Bergamot</span>
-                                    </div>
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="sun" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">Orange Blossom</span>
-                                    </div>
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="cookie" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">Vanilla</span>
-                                    </div>
-                                    <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center cursor-pointer hover:border-gold/50">
-                                        <i data-lucide="wind" class="w-5 h-5 text-gold mx-auto mb-1"></i>
-                                        <span class="text-xs">White Musk</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-6">
-                                <p class="text-sm text-gold uppercase tracking-wider mb-3">Layering Capsules</p>
-                                <div class="space-y-2">
-                                    <button onclick="selectCapsule('aura', 'iris')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="iris">
-                                        <div>
-                                            <span class="font-medium block">Iris Module</span>
-                                            <span class="text-xs text-gray-500">Velvety, refined, luxurious</span>
-                                        </div>
-                                        <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
-                                    </button>
-                                    <button onclick="selectCapsule('aura', 'sandalwood')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="sandalwood">
-                                        <div>
-                                            <span class="font-medium block">Sandalwood Module</span>
-                                            <span class="text-xs text-gray-500">Rich, milky, comforting</span>
-                                        </div>
-                                        <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
-                                    </button>
-                                    <button onclick="selectCapsule('aura', 'amber')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="amber">
-                                        <div>
-                                            <span class="font-medium block">Amber Module</span>
-                                            <span class="text-xs text-gray-500">Sensual, golden, enveloping</span>
-                                        </div>
-                                        <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                                <span class="text-2xl font-serif">$185</span>
-                                <button class="px-6 py-3 bg-gold text-black text-sm tracking-widest uppercase font-medium hover:bg-white transition-colors rounded-full">
-                                    Configure
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sustainability & Accessibility -->
-    <section id="sustainability" class="py-24 px-6" style="background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="scroll-reveal">
-                    <img src="http://static.photos/nature/800x600/55" alt="Sustainable luxury" class="w-full h-[500px] object-cover rounded-3xl opacity-80">
-                </div>
-                <div class="scroll-reveal">
-                    <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">Conscious Luxury</p>
-                    <h2 class="font-serif text-4xl md:text-5xl mb-6">Refillable by Design</h2>
-                    <p class="text-gray-400 mb-8 leading-relaxed">
-                        Scent in Motion represents a new era of responsible luxury. Our modular cartridge design reduces waste while preserving the elevated ritual expected from prestige fragrance.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="border-l-2 border-gold pl-4">
-                            <h4 class="font-serif text-xl mb-2">87%</h4>
-                            <p class="text-sm text-gray-500">Reduction in packaging waste vs traditional bottles</p>
-                        </div>
-                        <div class="border-l-2 border-gold pl-4">
-                            <h4 class="font-serif text-xl mb-2">100%</h4>
-                            <p class="text-sm text-gray-500">Recyclable capsule materials</p>
-                        </div>
-                        <div class="border-l-2 border-gold pl-4">
-                            <h4 class="font-serif text-xl mb-2">∞</h4>
-                            <p class="text-sm text-gray-500">Lifetime use with refillable architecture</p>
-                        </div>
-                        <div class="border-l-2 border-gold pl-4">
-                            <h4 class="font-serif text-xl mb-2">Universal</h4>
-                            <p class="text-sm text-gray-500">Designed for accessibility and ease of use</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
-                            <span class="text-sm">One-handed operation for improved accessibility</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
-                            <span class="text-sm">Magnetic closure requires minimal grip strength</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
-                            <span class="text-sm">Ergonomic design supports modern on-the-go lifestyles</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter / CTA -->
-    <section class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);">
-        <div class="absolute inset-0 bg-gradient-to-b from-red-900/20 to-transparent"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-950/20 rounded-full blur-3xl"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-10 scroll-reveal">
-            <h2 class="font-serif text-4xl md:text-6xl mb-6">Join the Revolution</h2>
-            <p class="text-gray-400 mb-8 text-lg">Be the first to experience the world's first modular luxury fragrance system.</p>
-            
-            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-8" onsubmit="event.preventDefault(); alert('Thank you for your interest! We will contact you soon.');">
-                <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 bg-white/5 border border-white/20 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
-                <button type="submit" class="px-8 py-4 bg-gold text-black font-medium rounded-full hover:bg-white transition-all duration-300">
-                    Notify Me
+              <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                <span class="text-2xl font-serif">$185</span>
+                <button class="px-6 py-3 bg-gold text-black text-sm tracking-widest uppercase font-medium hover:bg-white transition-colors rounded-full">
+                  Configure
                 </button>
-            </form>
-            
-            <p class="text-xs text-gray-600">Launching Fall 2024. Limited quantities available.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-red-900/30 py-12 px-6" style="background: linear-gradient(180deg, #0a0a0a 0%, #050000 100%);">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <span class="font-serif text-2xl tracking-wider font-bold text-white block mb-4">YSL</span>
-                    <p class="text-gray-500 text-sm">Couture. Technology. Bold Self-Expression.</p>
-                </div>
-                <div>
-                    <h4 class="text-gold text-xs tracking-widest uppercase mb-4">The System</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Couture Base</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Layering Capsules</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">AI Mood Translator</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-gold text-xs tracking-widest uppercase mb-4">Collection</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Onde Noire</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Aura Vive</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Refill Capsules</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-gold text-xs tracking-widest uppercase mb-4">Connect</h4>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-all">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-all">
-                            <i data-lucide="twitter" class="w-4 h-4"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-all">
-                            <i data-lucide="youtube" class="w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="border-t border-red-900/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-gray-600">&copy; 2024 YSL Beauty. All rights reserved.</p>
-                <div class="flex gap-6 text-xs text-gray-600">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
-                </div>
+          </div>
+
+          <div class="order-1 lg:order-2 relative">
+            <img src="assets/product-onde.png" alt="Onde Noire Bottle" class="w-full h-[600px] object-cover rounded-3xl opacity-90" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-3xl"></div>
+            <div class="absolute bottom-8 left-8 right-8">
+              <div class="inline-block px-4 py-2 bg-gold/20 backdrop-blur-md border border-gold/30 rounded-full text-gold text-xs tracking-widest uppercase">
+                Woodsy Base
+              </div>
             </div>
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+      <!-- Aura Vive -->
+      <div class="scroll-reveal">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="relative">
+            <img src="assets/product-aura.png" alt="Aura Vive Bottle" class="w-full h-[600px] object-cover rounded-3xl opacity-90" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-3xl"></div>
+            <div class="absolute bottom-8 left-8 right-8">
+              <div class="inline-block px-4 py-2 bg-gold/20 backdrop-blur-md border border-gold/30 rounded-full text-gold text-xs tracking-widest uppercase">
+                Floral Base
+              </div>
+            </div>
+          </div>
 
-        // Custom cursor
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
+          <div>
+            <div class="glass-panel rounded-3xl p-8">
+              <div class="flex items-center gap-4 mb-6">
+                <span class="text-gold text-xs tracking-widest uppercase px-3 py-1 border border-gold/30 rounded-full">For Her</span>
+              </div>
+              <h3 class="font-serif text-4xl mb-2">Aura Vive</h3>
+              <p class="text-gray-400 mb-6 italic">“The Living Aura”</p>
 
-        window.addEventListener('mousemove', (e) => {
-            if (window.innerWidth >= 768) {
-                const posX = e.clientX;
-                const posY = e.clientY;
+              <div class="mb-6">
+                <p class="text-sm text-gold uppercase tracking-wider mb-3">Couture Base Notes</p>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="leaf" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">Bergamot</span>
+                  </div>
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="sun" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">Orange Blossom</span>
+                  </div>
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="cookie" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">Vanilla</span>
+                  </div>
+                  <div class="scent-note bg-white/5 p-3 rounded-lg border border-white/10 text-center">
+                    <i data-lucide="wind" class="w-5 h-5 text-gold mx-auto mb-1"></i><span class="text-xs">White Musk</span>
+                  </div>
+                </div>
+              </div>
 
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
+              <div class="mb-6">
+                <p class="text-sm text-gold uppercase tracking-wider mb-3">Modules</p>
+                <div class="space-y-2">
+                  <button onclick="selectCapsule('aura','iris')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="iris">
+                    <div><span class="font-medium block">Iris</span><span class="text-xs text-gray-500">Velvety, quiet luxury</span></div>
+                    <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
+                  </button>
+                  <button onclick="selectCapsule('aura','sandalwood')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="sandalwood">
+                    <div><span class="font-medium block">Sandalwood</span><span class="text-xs text-gray-500">Creamy, grounded, confident</span></div>
+                    <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
+                  </button>
+                  <button onclick="selectCapsule('aura','amber')" class="capsule-slot w-full p-4 border border-white/10 rounded-xl text-left hover:border-gold/50 transition-all flex justify-between items-center group" data-capsule="amber">
+                    <div><span class="font-medium block">Amber</span><span class="text-xs text-gray-500">Golden, sensual, magnetic</span></div>
+                    <i data-lucide="plus" class="w-5 h-5 text-gray-600 group-hover:text-gold"></i>
+                  </button>
+                </div>
+              </div>
 
-                cursorOutline.animate({
-                    left: `${posX}px`,
-                    top: `${posY}px`
-                }, { duration: 500, fill: 'forwards' });
-            }
-        });
+              <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                <span class="text-2xl font-serif">$185</span>
+                <button class="px-6 py-3 bg-gold text-black text-sm tracking-widest uppercase font-medium hover:bg-white transition-colors rounded-full">
+                  Configure
+                </button>
+              </div>
+            </div>
+          </div>
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
+        </div>
+      </div>
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                navbar.classList.add('bg-black/95');
-            } else {
-                navbar.classList.remove('bg-black/95');
-            }
-            
-            lastScroll = currentScroll;
-        });
+    </div>
+  </section>
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+  <!-- Sustainability -->
+  <section id="sustainability" class="py-24 px-6" style="background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="scroll-reveal">
+          <img src="assets/sustainability.png" alt="Sustainable luxury" class="w-full h-[500px] object-cover rounded-3xl opacity-80" />
+        </div>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        <div class="scroll-reveal">
+          <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">Conscious Luxury</p>
+          <h2 class="font-serif text-4xl md:text-5xl mb-6">Refillable by Design</h2>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            One sculpted object for life. Capsule cartridges slot in and out — no full bottle repurchase. Accessibility is treated as luxury, not an afterthought.
+          </p>
 
-        // Smooth scroll function
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="border-l-2 border-gold pl-4">
+              <h4 class="font-serif text-xl mb-2">Refill-first</h4>
+              <p class="text-sm text-gray-500">Designed to reduce repurchase waste</p>
+            </div>
+            <div class="border-l-2 border-gold pl-4">
+              <h4 class="font-serif text-xl mb-2">Dual-chamber</h4>
+              <p class="text-sm text-gray-500">Base stays intact; modules refresh</p>
+            </div>
+            <div class="border-l-2 border-gold pl-4">
+              <h4 class="font-serif text-xl mb-2">Magnetic cap</h4>
+              <p class="text-sm text-gray-500">Snaps closed automatically</p>
+            </div>
+            <div class="border-l-2 border-gold pl-4">
+              <h4 class="font-serif text-xl mb-2">Low-force spray</h4>
+              <p class="text-sm text-gray-500">Operable with one finger, palm, or wrist</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+              <span class="text-sm">One-handed operation for improved accessibility</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+              <span class="text-sm">Magnetic closure requires minimal fine motor precision</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+              <span class="text-sm">Modular refills reduce the need to buy multiple bottles</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);">
+    <div class="absolute inset-0 bg-gradient-to-b from-red-900/20 to-transparent"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-950/20 rounded-full blur-3xl"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10 scroll-reveal">
+      <h2 class="font-serif text-4xl md:text-6xl mb-6">Bring it to Life</h2>
+      <p class="text-gray-400 mb-8 text-lg">Want to use this as your Brandstorm demo page? Drop in your final renders and share the link.</p>
+
+      <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-8" onsubmit="event.preventDefault(); alert('Thanks! (But this is a demo form for Loreal Brandstorm)');">
+        <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 bg-white/5 border border-white/20 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors" />
+        <button type="submit" class="px-8 py-4 bg-gold text-black font-medium rounded-full hover:bg-white transition-all duration-300">
+          Notify Me
+        </button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-red-900/30 py-12 px-6" style="background: linear-gradient(180deg, #0a0a0a 0%, #050000 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <span class="font-serif text-2xl tracking-wider font-bold text-white block mb-4">YSL</span>
+          <p class="text-gray-500 text-sm">Couture. Technology. Bold self-expression.</p>
+        </div>
+
+        <div>
+          <h4 class="text-gold text-xs tracking-widest uppercase mb-4">The System</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#system" class="hover:text-white transition-colors">Couture Base</a></li>
+            <li><a href="#system" class="hover:text-white transition-colors">Modulation Capsules</a></li>
+            <li><a href="#ai-translator" class="hover:text-white transition-colors">AI Mood Translator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-gold text-xs tracking-widest uppercase mb-4">Collection</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#collection" class="hover:text-white transition-colors">Onde Noire</a></li>
+            <li><a href="#collection" class="hover:text-white transition-colors">Aura Vive</a></li>
+            <li><a href="#sustainability" class="hover:text-white transition-colors">Refill Capsules</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-gold text-xs tracking-widest uppercase mb-4">Connect</h4>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-all" aria-label="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-all" aria-label="Twitter">
+              <i data-lucide="twitter" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-all" aria-label="YouTube">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-red-900/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-gray-600">&copy; 2026 YSL Beauty. Concept page.</p>
+        <div class="flex gap-6 text-xs text-gray-600">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // Custom cursor (desktop only)
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorOutline = document.getElementById('cursor-outline');
+
+    window.addEventListener('mousemove', (e) => {
+      if (window.innerWidth >= 768) {
+        const x = e.clientX;
+        const y = e.clientY;
+        cursorDot.style.left = `${x}px`;
+        cursorDot.style.top = `${y}px`;
+        cursorOutline.animate({ left: `${x}px`, top: `${y}px` }, { duration: 450, fill: 'forwards' });
+      }
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) navbar.classList.add('bg-black/95');
+      else navbar.classList.remove('bg-black/95');
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Smooth scroll helper
+    function scrollToSection(id){ document.getElementById(id).scrollIntoView({ behavior:'smooth' }); }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+    // Capsule selection (unchanged behavior: single-select per product)
+    function selectCapsule(product, capsule){
+      const slots = document.querySelectorAll(`[onclick^="selectCapsule('${product}'"]`);
+      slots.forEach(slot => {
+        const icon = slot.querySelector('i');
+        if (slot.dataset.capsule === capsule){
+          slot.classList.toggle('active');
+          icon.setAttribute('data-lucide', slot.classList.contains('active') ? 'check' : 'plus');
+        } else {
+          slot.classList.remove('active');
+          icon.setAttribute('data-lucide','plus');
         }
+      });
+      lucide.createIcons();
+    }
 
-        // Scroll reveal animation
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+    // Translator logic (prototype mapping)
+    const palette = {
+      Calm:      { title:'Calm & Focused', icon:'brain',  module:'Iris',
+                   color:'from-blue-500/40 to-purple-600/40',
+                   scanner:'#7C3AED',
+                   ring:'#7C3AED' },
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+      Confident: { title:'Confident & Powerful', icon:'crown', module:'Sandalwood',
+                   color:'from-yellow-400/40 to-amber-500/40',
+                   scanner:'#F59E0B',
+                   ring:'#F59E0B' },
 
-        document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+      Bold:      { title:'Energetic & Bold', icon:'zap',   module:'Amberwood',
+                   color:'from-red-500/40 to-orange-500/40',
+                   scanner:'#EF4444',
+                   ring:'#EF4444' },
 
-        // AI Mood Translator
-        const moods = [
-            { text: 'Energetic & Bold', icon: 'zap', blend: 'Base + Amberwood', color: 'from-orange-500/20 to-red-500/20' },
-            { text: 'Calm & Focused', icon: 'brain', blend: 'Base + Iris', color: 'from-blue-500/20 to-purple-500/20' },
-            { text: 'Romantic & Dreamy', icon: 'heart', blend: 'Base + Amber', color: 'from-pink-500/20 to-rose-500/20' },
-            { text: 'Confident & Powerful', icon: 'crown', blend: 'Base + Sandalwood', color: 'from-gold/20 to-yellow-500/20' },
-            { text: 'Creative & Inspired', icon: 'sparkles', blend: 'Base + Iris + Amber', color: 'from-purple-500/20 to-indigo-500/20' }
-        ];
+      Romantic:  { title:'Romantic & Dreamy', icon:'heart', module:'Amber',
+                   color:'from-pink-500/40 to-rose-500/40',
+                   scanner:'#EC4899',
+                   ring:'#EC4899' },
 
-        let currentMoodIndex = 1;
+      Inspired:  { title:'Creative & Inspired', icon:'sparkles', module:'Iris + Amber',
+                   color:'from-purple-600/40 to-indigo-600/40',
+                   scanner:'#8B5CF6',
+                   ring:'#8B5CF6' }
+    };
 
-        function analyzeMood() {
-            const moodText = document.getElementById('mood-text');
-            const moodIcon = document.getElementById('mood-icon');
-            const blendRec = document.getElementById('blend-rec');
-            const moodIconContainer = document.getElementById('mood-icon-container');
-            const moodRing = document.getElementById('mood-ring');
-            
-            // Random mood selection
-            currentMoodIndex = Math.floor(Math.random() * moods.length);
-            const mood = moods[currentMoodIndex];
-            
-            // Animate transition
-            moodRing.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                moodRing.style.transform = 'scale(1)';
-            }, 200);
-            
-            moodText.textContent = mood.text;
-            blendRec.textContent = mood.blend;
-            
-            // Update icon
-            moodIcon.setAttribute('data-lucide', mood.icon);
-            lucide.createIcons();
-            
-            // Update colors
-            moodIconContainer.className = `w-24 h-24 rounded-full bg-gradient-to-br ${mood.color} flex items-center justify-center mood-ring transition-all duration-500`;
-        }
+    function intensityCopy(val){
+      if (val === '1') return { label:'Soft', cue:'1–2 sprays' };
+      if (val === '3') return { label:'Statement', cue:'3 sprays + refresh' };
+      return { label:'Balanced', cue:'2 sprays + 1 refresh' };
+    }
 
-        // Update time display
-        function updateTime() {
-            const hour = new Date().getHours();
-            const timeDisplay = document.getElementById('time-display');
-            
-            if (hour < 12) timeDisplay.textContent = 'Morning';
-            else if (hour < 18) timeDisplay.textContent = 'Afternoon';
-            else timeDisplay.textContent = 'Evening';
-        }
-        updateTime();
-        setInterval(updateTime, 60000);
 
-        // Capsule selection
-        let selectedCapsules = {
-            onde: [],
-            aura: []
-        };
+    function pulseRecommendations(){
+      const rows = [
+        document.getElementById('rec-row-base'),
+        document.getElementById('rec-row-module'),
+        document.getElementById('rec-row-cue'),
+        document.getElementById('mood-ring'),
+        document.getElementById('mood-icon-container')
+      ].filter(Boolean);
 
-        function selectCapsule(product, capsule) {
-            const slots = document.querySelectorAll(`[onclick^="selectCapsule('${product}'"]`);
-            
-            slots.forEach(slot => {
-                if (slot.dataset.capsule === capsule) {
-                    slot.classList.toggle('active');
-                    
-                    if (slot.classList.contains('active')) {
-                        // Update icon to check
-                        const icon = slot.querySelector('i');
-                        icon.setAttribute('data-lucide', 'check');
-                    } else {
-                        // Update icon back to plus
-                        const icon = slot.querySelector('i');
-                        icon.setAttribute('data-lucide', 'plus');
-                    }
-                } else {
-                    slot.classList.remove('active');
-                    const icon = slot.querySelector('i');
-                    icon.setAttribute('data-lucide', 'plus');
-                }
-            });
-            
-            lucide.createIcons();
-        }
+      rows.forEach(el => {
+        el.classList.remove('glow-pulse');
+        // force reflow so animation can replay
+        void el.offsetWidth;
+        el.classList.add('glow-pulse');
+      });
+    }
 
-        // Parallax effect for hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.scent-bubble');
-            
-            parallaxElements.forEach(el => {
-                const speed = 0.5;
-                el.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-    </script>
+    function triggerParticles(){
+      const layer = document.getElementById('particle-layer');
+      const ring = document.getElementById('mood-ring');
+      if (!layer || !ring) return;
+
+      // Clear existing particles (if any)
+      layer.innerHTML = '';
+
+      // Use ring center as origin relative to the panel
+      const layerRect = layer.getBoundingClientRect();
+      const ringRect = ring.getBoundingClientRect();
+      const cx = (ringRect.left - layerRect.left) + ringRect.width / 2;
+      const cy = (ringRect.top - layerRect.top) + ringRect.height / 2;
+
+      const count = 18; // subtle but noticeable
+      for (let i = 0; i < count; i++){
+        const p = document.createElement('div');
+        p.className = 'particle';
+
+        // Start near ring center with tiny jitter
+        const sx = (Math.random() * 10 - 5);
+        const sy = (Math.random() * 10 - 5);
+
+        // End position: burst outward
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 120 + Math.random() * 90;
+        const ex = Math.cos(angle) * dist;
+        const ey = Math.sin(angle) * dist;
+
+        // Place particle at the ring center
+        p.style.left = `${cx}px`;
+        p.style.top = `${cy}px`;
+
+        // Per-particle vars for animation
+        p.style.setProperty('--sx', `${sx}px`);
+        p.style.setProperty('--sy', `${sy}px`);
+        p.style.setProperty('--ex', `${ex}px`);
+        p.style.setProperty('--ey', `${ey}px`);
+
+        // Stagger
+        p.style.animationDelay = `${Math.random() * 120}ms`;
+
+        layer.appendChild(p);
+      }
+
+      // Cleanup after animation
+      setTimeout(() => { if (layer) layer.innerHTML = ''; }, 1100);
+    }
+
+    function translateMood(){
+      const moment = document.getElementById('moment').value;
+      const mood = document.getElementById('mood').value;
+      const intensity = document.getElementById('intensity').value;
+
+      const m = palette[mood] || palette.Calm;
+      const i = intensityCopy(String(intensity));
+
+      // Match the rotating scanner color to the selected mood
+      
+document.documentElement.style.setProperty('--scanner-color', m.scanner);
+
+// Make the outer ring match the mood color
+document.getElementById('mood-ring').style.borderColor = m.ring;
+
+
+      document.getElementById('rec-title').textContent = m.title;
+      document.getElementById('rec-sub').textContent = `${moment} · ${i.label}`;
+      document.getElementById('rec-module').textContent = m.module;
+      document.getElementById('rec-cue').textContent = i.cue;
+      document.getElementById('rec-base').textContent = 'Onde Noire / Aura Vive';
+
+      // Update icon + color
+      const icon = document.getElementById('mood-icon');
+      icon.setAttribute('data-lucide', m.icon);
+      lucide.createIcons();
+      document.getElementById('mood-icon-container').className = `w-24 h-24 rounded-full bg-gradient-to-br ${m.color} flex items-center justify-center transition-all duration-500`;
+
+      // Delight: particles + glow when the mood changes
+      triggerParticles();
+      pulseRecommendations();
+    }
+
+    function randomizeTranslator(){
+      const moments = Array.from(document.getElementById('moment').options).map(o => o.value);
+      const moods = Array.from(document.getElementById('mood').options).map(o => o.value);
+      document.getElementById('moment').value = moments[Math.floor(Math.random() * moments.length)];
+      document.getElementById('mood').value = moods[Math.floor(Math.random() * moods.length)];
+      document.getElementById('intensity').value = String(1 + Math.floor(Math.random() * 3));
+      translateMood();
+    }
+
+    // First render
+    translateMood();
+  </script>
 </body>
 </html>
