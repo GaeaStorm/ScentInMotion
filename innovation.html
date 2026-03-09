@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YSL Scent in Motion | Innovation</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G9ZHHMSXCL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-G9ZHHMSXCL');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+
+    :root{
+      --scanner-color: var(--ysl-gold);
+
+      --ysl-black:#0a0a0a;
+      --ysl-scarlet:#8B0000;
+      --ysl-scarlet-dark:#4a0000;
+      --ysl-gold:#d4af37;
+      --ysl-gold-light:#f4e8c1;
+      --ysl-purple:#6D28D9;
+      --ysl-purple-dark:#2E1065;
+      --ysl-purple-soft:#A78BFA;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background: radial-gradient(1000px 600px at 20% 10%, rgba(139,0,0,.18), transparent 60%),
+                  radial-gradient(900px 500px at 80% 30%, rgba(212,175,55,.12), transparent 55%),
+                  radial-gradient(900px 520px at 65% 85%, rgba(109,40,217,.14), transparent 55%),
+                  linear-gradient(135deg,#0a0a0a 0%, #1a0000 45%, #0a0a0a 100%);
+      background-attachment: fixed;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .font-serif{font-family:'Playfair Display',serif;}
+    .text-gold{color:var(--ysl-gold);}
+    .bg-gold{background-color:var(--ysl-gold);}
+    .border-gold{border-color:var(--ysl-gold);}
+    .text-purple{color:var(--ysl-purple-soft);}
+    .border-purple{border-color:var(--ysl-purple-soft);}
+
+    .gradient-text{
+      background:linear-gradient(135deg,#d4af37 0%, #f4e8c1 50%, #d4af37 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    .hero-gradient{
+      background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,.6) 35%, rgba(10,10,10,1) 100%);
+    }
+
+    .magnetic-hover{transition:transform .3s cubic-bezier(.4,0,.2,1);}
+    .magnetic-hover:hover{transform:translateY(-2px);}
+
+    .glass-panel{
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.14) 0%, rgba(10, 10, 10, 0.45) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.30);
+      box-shadow: 0 8px 32px rgba(139, 0, 0, 0.22), 0 10px 40px rgba(109, 40, 217, 0.12);
+    }
+
+    .scroll-reveal{
+      opacity:0;
+      transform:translateY(30px);
+      transition:all .8s cubic-bezier(.5,0,0,1);
+    }
+    .scroll-reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .ai-scanner{
+      background:conic-gradient(from 0deg,
+        transparent 0deg,
+        var(--scanner-color) 90deg,
+        transparent 180deg,
+        var(--scanner-color) 270deg,
+        transparent 360deg
+      );
+      animation:scan 3s linear infinite;
+    }
+    @keyframes scan{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+    .capsule-slot{transition:all .35s cubic-bezier(.4,0,.2,1);}
+    .capsule-slot.active{
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.30) 0%, rgba(212, 175, 55, 0.10) 100%);
+      border-color: var(--ysl-gold);
+      box-shadow: 0 0 20px rgba(212,175,55,.25), 0 0 40px rgba(139,0,0,.18);
+    }
+
+    .scent-note{transition:all .25s ease;}
+    .scent-note:hover{
+      transform:scale(1.04);
+      box-shadow:0 10px 30px rgba(212,175,55,.20), 0 0 18px rgba(139,0,0,.22), 0 0 22px rgba(109,40,217,.18);
+      border-color:rgba(212,175,55,.5);
+    }
+
+    /* Custom cursor (desktop only) */
+    .custom-cursor{cursor:none;}
+    .cursor-dot{
+      width:8px;height:8px;background-color:var(--ysl-gold);
+      border-radius:9999px;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;
+    }
+    .cursor-outline{
+      width:40px;height:40px;border:1px solid var(--ysl-gold);
+      border-radius:9999px;position:fixed;pointer-events:none;z-index:9998;transition:all .1s ease;
+    }
+
+    /* Micro “motion” accents */
+    .drift{animation:drift 8s ease-in-out infinite;}
+    @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  
+    /* Mood change polish */
+    @keyframes glowPulse {
+      0%   { box-shadow: 0 0 0 rgba(0,0,0,0); transform: translateY(0); }
+      35%  { box-shadow: 0 0 24px rgba(212,175,55,.22), 0 0 34px rgba(109,40,217,.22), 0 0 18px rgba(255,255,255,.08); transform: translateY(-1px); }
+      100% { box-shadow: 0 0 0 rgba(0,0,0,0); transform: translateY(0); }
+    }
+    .glow-pulse { animation: glowPulse 900ms ease-out; }
+
+    .particle-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 5;
+    }
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: var(--scanner-color);
+      box-shadow: 0 0 12px var(--scanner-color);
+      opacity: 0.0;
+      animation: particleBurst 900ms ease-out forwards;
+      filter: saturate(1.15);
+    }
+    @keyframes particleBurst {
+      0%   { transform: translate(var(--sx), var(--sy)) scale(.6); opacity: 0; }
+      15%  { opacity: .95; }
+      100% { transform: translate(var(--ex), var(--ey)) scale(0); opacity: 0; }
+    }
+
+  
+
+    .page-shell{padding-top:120px; padding-bottom:80px;}
+    .page-header{max-width:1000px; margin:0 auto 48px; padding:0 24px; text-align:center;}
+    .page-header h1{font-family:'Playfair Display',serif; font-size:clamp(2.8rem,6vw,4.75rem); line-height:1.05; margin:0 0 16px;}
+    .page-header p{max-width:760px; margin:0 auto; color:#c4c4cc; font-size:1.05rem; line-height:1.8;}
+    .section-block{max-width:1200px; margin:0 auto 28px; padding:0 24px;}
+    .section-card{
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.14) 0%, rgba(10, 10, 10, 0.45) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.26);
+      box-shadow: 0 8px 32px rgba(139, 0, 0, 0.18), 0 10px 40px rgba(109, 40, 217, 0.10);
+      border-radius: 28px;
+      padding: 34px;
+    }
+    .section-number{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:999px;
+      border:1px solid rgba(212,175,55,.35); color:var(--ysl-gold);
+      font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:20px;
+      background:rgba(212,175,55,.08);
+    }
+    .section-card h2{font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.4rem); line-height:1.1; margin:0 0 14px;}
+    .section-card p{color:#c4c4cc; line-height:1.8; margin:0 0 14px;}
+    .section-card p:last-child{margin-bottom:0;}
+    .two-col{display:grid; grid-template-columns:1.05fr .95fr; gap:28px;}
+    .three-col{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:18px;}
+    .mini-card{background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px;}
+    .mini-card h3{font-family:'Playfair Display',serif; font-size:1.15rem; margin:0 0 8px;}
+    .mini-card p{font-size:.95rem; color:#b4b4bc; margin:0;}
+    .bullet-list{display:grid; gap:10px; margin-top:18px;}
+    .bullet-item{display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08);}
+    .bullet-dot{width:10px; height:10px; border-radius:999px; background:var(--ysl-gold); margin-top:9px; flex:0 0 auto; box-shadow:0 0 16px rgba(212,175,55,.35);}
+    .bullet-item p{margin:0;}
+    .page-footer{max-width:1200px; margin:56px auto 0; padding:0 24px 48px;}
+    .page-footer .glass-panel{padding:24px 28px; border-radius:22px;}
+    .nav-active{color:var(--ysl-gold) !important;}
+    .nav-active-mobile{color:var(--ysl-gold) !important;}
+    @media (max-width: 900px){.two-col,.three-col{grid-template-columns:1fr;}.page-shell{padding-top:110px;}.section-card{padding:26px;}}
+
+  </style>
+</head>
+
+<body class="custom-cursor">
+  <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
+  <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+
+  <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="font-serif text-2xl tracking-wider font-bold text-white">YSL</a>
+        <span class="text-gold text-xs tracking-[0.3em] uppercase hidden sm:block">Beauty</span>
+        <span class="hidden md:inline-flex items-center ml-3 px-3 py-1 rounded-full border border-gold/30 bg-gold/10 text-[10px] tracking-[0.25em] uppercase text-gold">
+          Concept Prototype
+        </span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm tracking-widest uppercase">
+        <a href="innovation.html" class="nav-active hover:text-gold transition-colors">Innovation</a>
+        <a href="sustainability.html" class="hover:text-gold transition-colors">Sustainability</a>
+        <a href="feasibility.html" class="hover:text-gold transition-colors">Feasibility</a>
+        <a href="scalability.html" class="hover:text-gold transition-colors">Scalability</a>
+        <a href="inclusivity.html" class="hover:text-gold transition-colors">Inclusivity</a>
+      </div>
+      <button class="md:hidden text-white" id="mobile-menu-btn" aria-label="Open menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div class="md:hidden hidden bg-black border-t border-white/10" id="mobile-menu">
+      <div class="flex flex-col p-6 gap-4 text-sm tracking-widest uppercase">
+        <a href="innovation.html" class="nav-active-mobile hover:text-gold transition-colors">Innovation</a>
+        <a href="sustainability.html" class="hover:text-gold transition-colors">Sustainability</a>
+        <a href="feasibility.html" class="hover:text-gold transition-colors">Feasibility</a>
+        <a href="scalability.html" class="hover:text-gold transition-colors">Scalability</a>
+        <a href="inclusivity.html" class="hover:text-gold transition-colors">Inclusivity</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <main class="page-shell">
+    <div class="page-header scroll-reveal">
+      <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">Innovation</p>
+      <h1>Innovation</h1>
+      <p>This page walks through the five places where the concept is actually novel: the fragrance selection logic, the mix-during-spray mechanism, the private-client custom extension, the AI’s role, and the strategic moat.</p>
+    </div>
+    
+  <section class="section-block scroll-reveal">
+    <div class="section-card">
+      <div class="section-number">01</div>
+      <h2>Fragrance Selection: How this differs from Layering</h2>
+      
+<p>Luxury fragrance is built on olfactive architecture, not arbitrary blending. With Scent in Motion, each fragrance begins with a complete couture base composition designed by the perfumer as a finished scent. The modulation capsules are then engineered to shift emotional tone without collapsing the structure. The perfume works with every combination of the base and any/all modules.</p>
+<p><span class="text-gold">Layering instead relies on mixing multiple perfumes together as people wear one perfume to work and another at night. This risks muddled scents and multiple notes. Using a specific base which provides the longest-lasting fragrance and adding modules that are primarily the middle and top notes allows a true shifting in the flavor of the fragrance.</span></p>
+<p>For launch, the men’s base centers bergamot, lavender, cedarwood, and ambroxan, while the women’s base centers bergamot, orange blossom, vanilla, and white musk. Expression capsules such as iris, sandalwood, and amber or amberwood introduce small directional shifts rather than wholesale reformulation. This follows the project’s core rule: the base stays intact and the change stays subtle enough that the signature never gets muddled. The notes are also familiar in both fragrances with only part of the base changing for women's vs men's.</p>
+<div class="three-col mt-6">
+  <div class="mini-card"><h3>Men’s Base</h3><p>Bergamot, lavender, cedarwood, ambroxan, then subtle movement through iris, sandalwood, or amberwood.</p></div>
+  <div class="mini-card"><h3>Women’s Base</h3><p>Bergamot, orange blossom, vanilla, white musk, then subtle movement through iris, sandalwood, or amber.</p></div>
+  <div class="mini-card"><h3>Luxury Guardrail</h3><p>The scent evolves in a controlled way rather than collapsing into a random blend.</p></div>
+</div>
+<p></p>
+<p class="mt-6">That is commercially important. The dupe and layering culture around fragrance is growing, but uncontrolled layering frequently produces weak top notes and muddled drydowns. Scent in Motion turns that consumer behavior into a disciplined, premium alternative.</p>
+
+    </div>
+  </section>
+  <section class="section-block scroll-reveal">
+    <div class="section-card">
+      <div class="section-number">02</div>
+      <h2>Mixing During Spray: The Core Mechanical Innovation</h2>
+
+<p>
+At the heart of the concept is a precision multi-channel microfluidic dispensing system that blends fragrance components only at the moment of spray. The bottle contains separate sealed reservoirs for the couture base and the expression modules. Each chamber connects to a micro-metering pump with calibrated flow valves.
+</p>
+
+<p>
+When the actuator is pressed, pressure is distributed across the channels and releases precisely measured micro-volumes that converge in a micro-mixing chamber positioned directly before the atomizing nozzle. Using coaxial atomization geometry, the streams are rapidly sheared into a fine aerosol plume that produces a homogeneous scent cloud while preserving the stability of each formula during storage.
+</p>
+
+<p class="mt-6">
+Because the liquids remain isolated until the final milliseconds of spray, the perfumer’s base architecture stays chemically intact while still allowing controlled modulation.
+</p>
+
+<div class="three-col mt-6">
+
+  <div class="mini-card">
+    <h3>Dual Reservoir Architecture</h3>
+    <p>
+    Separate sealed chambers store the couture base and expression modules independently. This preserves formula stability during storage and prevents premature chemical interaction between ingredients.
+    </p>
+  </div>
+
+  <div class="mini-card">
+    <h3>Micro-Metering Pump System</h3>
+    <p>
+    Calibrated dual-piston micro-metering pumps release precise micro-volumes from each reservoir when the actuator is pressed, ensuring repeatable base-to-module ratios in every spray.
+    </p>
+  </div>
+
+  <div class="mini-card">
+    <h3>Micro-Mixing Atomization</h3>
+    <p>
+    The fragrance streams converge in a micro-mixing chamber directly before the atomizing nozzle. Coaxial atomization rapidly shears the liquids into a uniform aerosol plume, creating a consistent hybrid scent cloud.
+    </p>
+  </div>
+
+</div>
+
+<p class="mt-6">
+From a manufacturing perspective, the launch configuration uses a dual-chamber architecture with one couture base reservoir and one expression module. This design relies on a dual-piston metering pump and an internal separator cartridge. At production scale, the mechanical system, luxury bottle components, and fragrance liquids are estimated to cost approximately <span class="text-gold">$18–$32 per unit</span>.
+</p>
+
+<p>
+The platform can also expand to a four-chamber configuration with one base reservoir and up to three expression modules. This version requires a more complex multi-channel pump and mixing manifold, increasing manufacturing cost by approximately <span class="text-gold">$20 per unit</span>. These numbers are based on approximation and current industry costs rather than specific supplier quotes.
+</p>
+
+<p class="mt-6">
+By embedding precision fluid mechanics into the bottle itself, the system turns fragrance modulation into a repeatable dispensing technology platform that is significantly more difficult to replicate than traditional refill or layering concepts.
+</p>
+      <!-- <h2>Mixing During Spray: The Core Mechanical Innovation</h2>
+      
+<p>This is the major technical leap in the concept: the fragrances are not pre-mixed in the bottle and they are not simply layered one after another on skin. They are combined at the moment of spray through an internal system that meters the base and the selected module in calibrated proportions.</p>
+<div class="three-col mt-6">
+  <div class="mini-card"><h3>Dual Reservoirs</h3><p>Separate channels keep the couture base and module isolated until activation, preserving stability and formula integrity.</p></div>
+  <div class="mini-card"><h3>Micro-Metering</h3><p>Metering valves regulate the base-to-module ratio so the shift remains subtle, repeatable, and premium rather than noisy or overly obvious.</p></div>
+  <div class="mini-card"><h3>Mix-at-Nozzle Event</h3><p>The blend happens in the spray path itself, creating a composed hybrid plume instead of a DIY layering effect.</p></div>
+</div>
+<p class="mt-6">Mechanically, this is more defensible than a simple refill or cartridge story because it depends on pressure balance, atomization, and precise repeatability. It turns modulation into a real dispensing technology platform. That matters strategically because it gives the product something harder to copy than a note pyramid alone.</p> -->
+
+    </div>
+  </section>
+  <section class="section-block scroll-reveal">
+    <div class="section-card">
+      <div class="section-number">03</div>
+      <h2>A Bespoke Version for High-Value Clients</h2>
+      
+<p>There is also a premium extension path. For select customers, Scent in Motion could be offered as a higher-cost bespoke edition where the wearer’s olfactive profile is first mapped through a Scent-Sation-style calibration session, then translated into a private base-plus-module system built around their own preferred scent movement.</p>
+<p>YSL Beauty already tried Scent-Sation as a 25-minute in-store experience that uses neuroscience and AI to analyze emotional reactions to scent pairings and recommend tailored fragrances. Scent in Motion builds naturally on that logic: instead of only recommending an existing SKU, the service would configure a custom shifting scent profile with controlled ratios and a private emotional signature.</p>
+<div class="bullet-list">
+  <div class="bullet-item"><div class="bullet-dot"></div><p><strong>Standard model:</strong> curated bases and modules, scaled for broader retail and e-commerce launch.</p></div>
+  <div class="bullet-item"><div class="bullet-dot"></div><p><strong>Private-client model:</strong> a custom base-plus-module system informed by personal olfactive calibration.</p></div>
+  <div class="bullet-item"><div class="bullet-dot"></div><p><strong>Estimated premium tier:</strong> a standard system around $185, with a calibrated private-client edition in the $350 to $450 range.</p></div>
+</div>
+
+    </div>
+  </section>
+  <section class="section-block scroll-reveal">
+    <div class="section-card">
+      <div class="section-number">04</div>
+      <h2>AI as an Olfactive Curator</h2>
+
+<p>
+The AI Mood Translator functions as a guidance system rather than a creative engine. Its role is to interpret mood, context, and desired scent intensity, then translate those signals into a recommendation that remains within the perfumer’s original composition. Instead of generating new fragrances, it works inside a predefined olfactive architecture, preserving the integrity of haute perfumery while allowing subtle adaptation throughout the day.
+</p>
+
+<div class="two-col mt-6">
+  <div class="mini-card">
+    <h3>Controlled Intelligence</h3>
+    <p>
+      The system evaluates mood, time of day, social setting, and projection level, then recommends a calibrated capsule adjustment that enhances the base without disrupting it.
+    </p>
+  </div>
+  <div class="mini-card">
+    <h3>Environmental Awareness</h3>
+    <p>
+      Real-time weather inputs such as temperature and humidity can refine recommendations, allowing lighter projection in heat or richer expression in cooler conditions, always within perfumer guidelines.
+    </p>
+  </div>
+</div>
+<p class="mt-6">
+Over time, the AI learns from recurring behaviors and builds a Signature Profile shaped by capsule selection, usage patterns, and context. Rather than replacing the ritual of choosing fragrance, it refines it, making each recommendation feel increasingly personal.
+</p>
+<p>
+This creates a stronger luxury story. The technology is not positioned as an engine that invents perfume formulas. It deepens the relationship between the wearer and the perfumer’s work by translating emotion, environment, and personal preference into subtle adjustments inside a curated creative framework.
+</p>
+
+    </div>
+  </section>
+  </main>
+
+  <script>
+    lucide.createIcons();
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorOutline = document.getElementById('cursor-outline');
+    window.addEventListener('mousemove', (e) => {
+      if (window.innerWidth >= 768) {
+        const x = e.clientX;
+        const y = e.clientY;
+        cursorDot.style.left = `${x}px`;
+        cursorDot.style.top = `${y}px`;
+        cursorOutline.animate({ left: `${x}px`, top: `${y}px` }, { duration: 450, fill: 'forwards' });
+      }
+    });
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 100) navbar.classList.add('bg-black/95');
+      else navbar.classList.remove('bg-black/95');
+    });
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

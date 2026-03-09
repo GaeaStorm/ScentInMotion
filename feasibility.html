@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YSL Scent in Motion | Market Research</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G9ZHHMSXCL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-G9ZHHMSXCL');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --ysl-black:#0a0a0a;
+      --ysl-scarlet:#8B0000;
+      --ysl-gold:#d4af37;
+      --ysl-gold-light:#f4e8c1;
+      --ysl-purple:#6D28D9;
+      --ysl-purple-dark:#2E1065;
+      --ysl-purple-soft:#A78BFA;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background: radial-gradient(1000px 600px at 20% 10%, rgba(139,0,0,.18), transparent 60%),
+                  radial-gradient(900px 500px at 80% 30%, rgba(212,175,55,.12), transparent 55%),
+                  radial-gradient(900px 520px at 65% 85%, rgba(109,40,217,.14), transparent 55%),
+                  linear-gradient(135deg,#0a0a0a 0%, #1a0000 45%, #0a0a0a 100%);
+      background-attachment: fixed;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .font-serif{font-family:'Playfair Display',serif;}
+    .text-gold{color:var(--ysl-gold);}
+    .text-purple{color:var(--ysl-purple-soft);}
+    .border-gold{border-color:var(--ysl-gold);}
+
+    .gradient-text{
+      background:linear-gradient(135deg,#d4af37 0%, #f4e8c1 50%, #d4af37 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    .glass-panel{
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.14) 0%, rgba(10, 10, 10, 0.45) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.30);
+      box-shadow: 0 8px 32px rgba(139, 0, 0, 0.22), 0 10px 40px rgba(109, 40, 217, 0.12);
+    }
+
+    .scroll-reveal{
+      opacity:0;
+      transform:translateY(30px);
+      transition:all .8s cubic-bezier(.5,0,0,1);
+    }
+    .scroll-reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .custom-cursor{cursor:none;}
+    .cursor-dot{
+      width:8px;height:8px;background-color:var(--ysl-gold);
+      border-radius:9999px;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;
+    }
+    .cursor-outline{
+      width:40px;height:40px;border:1px solid var(--ysl-gold);
+      border-radius:9999px;position:fixed;pointer-events:none;z-index:9998;transition:all .1s ease;
+    }
+
+    .page-shell{padding-top:120px; padding-bottom:80px;}
+    .page-header{max-width:1000px; margin:0 auto 48px; padding:0 24px; text-align:center;}
+    .page-header h1{font-family:'Playfair Display',serif; font-size:clamp(2.8rem,6vw,4.75rem); line-height:1.05; margin:0 0 16px;}
+    .page-header p{max-width:760px; margin:0 auto; color:#c4c4cc; font-size:1.05rem; line-height:1.8;}
+
+    .section-block{max-width:1200px; margin:0 auto 28px; padding:0 24px;}
+    .section-card{
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.14) 0%, rgba(10, 10, 10, 0.45) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.26);
+      box-shadow: 0 8px 32px rgba(139, 0, 0, 0.18), 0 10px 40px rgba(109, 40, 217, 0.10);
+      border-radius: 28px;
+      padding: 34px;
+    }
+    .section-number{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:999px;
+      border:1px solid rgba(212,175,55,.35); color:var(--ysl-gold);
+      font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:20px;
+      background:rgba(212,175,55,.08);
+    }
+    .section-card h2{font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.4rem); line-height:1.1; margin:0 0 14px;}
+    .section-card p{color:#c4c4cc; line-height:1.8; margin:0 0 14px;}
+    .section-card p:last-child{margin-bottom:0;}
+
+    .two-col{display:grid; grid-template-columns:1.1fr .9fr; gap:28px;}
+    .three-col{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:18px;}
+    .four-col{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px;}
+
+    .mini-card{background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px;}
+    .mini-card h3{font-family:'Playfair Display',serif; font-size:1.15rem; margin:0 0 8px;}
+    .mini-card p{font-size:.95rem; color:#b4b4bc; margin:0;}
+
+    .metric-card{
+      background:linear-gradient(135deg, rgba(212,175,55,.10) 0%, rgba(255,255,255,.02) 100%);
+      border:1px solid rgba(212,175,55,.18);
+      border-radius:22px;
+      padding:22px;
+    }
+    .metric-card .label{font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#b4b4bc; margin-bottom:10px;}
+    .metric-card .value{font-family:'Playfair Display',serif; font-size:2rem; line-height:1; color:var(--ysl-gold); margin-bottom:8px;}
+    .metric-card .sub{color:#c4c4cc; font-size:.95rem; line-height:1.6;}
+
+    .bullet-list{display:grid; gap:10px; margin-top:18px;}
+    .bullet-item{display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08);}
+    .bullet-dot{width:10px; height:10px; border-radius:999px; background:var(--ysl-gold); margin-top:9px; flex:0 0 auto; box-shadow:0 0 16px rgba(212,175,55,.35);}
+    .bullet-item p{margin:0;}
+
+    .data-table-wrap{overflow-x:auto; margin-top:18px; border-radius:18px; border:1px solid rgba(255,255,255,.08);}
+    table{width:100%; border-collapse:collapse; min-width:720px; background:rgba(255,255,255,.02);}
+    th, td{padding:14px 16px; text-align:left; border-bottom:1px solid rgba(255,255,255,.07);}
+    th{font-size:.75rem; letter-spacing:.22em; text-transform:uppercase; color:#d4af37; background:rgba(212,175,55,.05);}
+    td{color:#d4d4db; font-size:.95rem;}
+    tr:last-child td{border-bottom:none;}
+
+    .bar-row{display:grid; gap:12px; margin-top:16px;}
+    .bar-item{display:grid; grid-template-columns:190px 1fr 54px; gap:14px; align-items:center;}
+    .bar-label{color:#d2d2d8; font-size:.92rem;}
+    .bar-track{height:10px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden;}
+    .bar-fill{height:100%; border-radius:999px; background:linear-gradient(90deg, rgba(212,175,55,.95), rgba(167,139,250,.9));}
+    .bar-value{font-size:.9rem; color:#f1e5ba; text-align:right;}
+
+    .callout{
+      border-left:2px solid rgba(212,175,55,.45);
+      padding-left:18px;
+      margin-top:18px;
+      color:#d6d6dc;
+    }
+
+    .page-footer{max-width:1200px; margin:56px auto 0; padding:0 24px 48px;}
+    .page-footer .glass-panel{padding:24px 28px; border-radius:22px;}
+    .nav-active{color:var(--ysl-gold) !important;}
+    .nav-active-mobile{color:var(--ysl-gold) !important;}
+
+    @media (max-width: 1100px){.four-col{grid-template-columns:repeat(2, minmax(0, 1fr));}}
+    @media (max-width: 900px){
+      .two-col,.three-col,.four-col{grid-template-columns:1fr;}
+      .page-shell{padding-top:110px;}
+      .section-card{padding:26px;}
+      .bar-item{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body class="custom-cursor">
+  <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
+  <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+
+  <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <a href="#" class="font-serif text-2xl tracking-wider font-bold text-white">YSL</a>
+        <span class="text-gold text-xs tracking-[0.3em] uppercase hidden sm:block">Beauty</span>
+        <span class="hidden md:inline-flex items-center ml-3 px-3 py-1 rounded-full border border-gold/30 bg-yellow-500/10 text-[10px] tracking-[0.25em] uppercase text-gold">
+          Research Synthesis
+        </span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm tracking-widest uppercase">
+        <a href="#market" class="hover:text-gold transition-colors">Market</a>
+        <a href="#consumer" class="hover:text-gold transition-colors">Consumer</a>
+        <a href="#economics" class="hover:text-gold transition-colors">Economics</a>
+        <a href="#dupes" class="hover:text-gold transition-colors">Dupes</a>
+        <a href="#risks" class="hover:text-gold transition-colors">Risks</a>
+      </div>
+      <button class="md:hidden text-white" id="mobile-menu-btn" aria-label="Open menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div class="md:hidden hidden bg-black border-t border-white/10" id="mobile-menu">
+      <div class="flex flex-col p-6 gap-4 text-sm tracking-widest uppercase">
+        <a href="#market" class="hover:text-gold transition-colors">Market</a>
+        <a href="#consumer" class="hover:text-gold transition-colors">Consumer</a>
+        <a href="#economics" class="hover:text-gold transition-colors">Economics</a>
+        <a href="#dupes" class="hover:text-gold transition-colors">Dupes</a>
+        <a href="#risks" class="hover:text-gold transition-colors">Risks</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <div class="page-header scroll-reveal">
+      <p class="text-gold text-xs tracking-[0.5em] uppercase mb-4">Scent in Motion</p>
+      <h1>Market Research</h1>
+      <p>A product-management view of the opportunity behind a modular luxury fragrance system. This page condenses the market, consumer, dupe, and commercial logic into one clear narrative.</p>
+    </div>
+
+    <section class="section-block scroll-reveal" id="market">
+      <div class="section-card">
+        <div class="section-number">01</div>
+        <h2>Category Size and Why the Timing Works</h2>
+        <p>Luxury fragrance is large, growing, and emotionally differentiated. The exception fragrance market reached €7.5B sell-out in 2022, grew 29% year over year, and is projected to outpace prestige over the next five years. North America accounts for 26% of market share, which makes it the strongest first-launch geography for a modular premium system.</p>
+        <div class="four-col mt-8">
+          <div class="metric-card">
+            <div class="label">Exception Market</div>
+            <div class="value">€7.5B</div>
+            <div class="sub">Sell-out value in 2022 across exception fragrance.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Category Growth</div>
+            <div class="value">+29%</div>
+            <div class="sub">Year-over-year growth. Faster than prestige and access luxury.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">5 Year Outlook</div>
+            <div class="value">+13%</div>
+            <div class="sub">Expected growth, versus 8% for prestige fragrance.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">North America</div>
+            <div class="value">26%</div>
+            <div class="sub">Regional share of market. Best initial launch pool.</div>
+          </div>
+        </div>
+        <div class="callout">The product is not entering a flat market. It is entering the most emotionally premium pocket of the fragrance category, where consumers already pay for distinction, story, and ritual.</div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal">
+      <div class="section-card">
+        <div class="section-number">02</div>
+        <h2>What the Consumer Actually Wants</h2>
+        <div class="two-col mt-6">
+          <div>
+            <p>Consumer demand already maps well to the concept. In luxury fragrance, the key drivers are elevation through uniqueness, status, and compliments. In the US, fragrance plays a stronger social role and over-indexes on freshness, sexy confidence, and sensorial stimulation. Exception users also over-index on personal assertion and social impact.</p>
+            <div class="bullet-list">
+              <div class="bullet-item"><span class="bullet-dot"></span><p><strong>Gen Z opportunity:</strong> strong connection to scent addiction, self-expression, meaningful scents, and gender-fluid identity.</p></div>
+              <div class="bullet-item"><span class="bullet-dot"></span><p><strong>Millennial opportunity:</strong> balanced appetite for personal assertion, sensorial stimulation, and wellness.</p></div>
+              <div class="bullet-item"><span class="bullet-dot"></span><p><strong>Exception behavior:</strong> higher pull toward understated chic, sexy seduction, sweet memories, and thrill.</p></div>
+            </div>
+          </div>
+          <div>
+            <div class="mini-card">
+              <h3>Why Scent in Motion Fits</h3>
+              <p>The product turns a static bottle into an identity tool. That matches the consumer desire for elevated self-expression while keeping authorship and luxury guardrails intact.</p>
+            </div>
+            <div class="mini-card mt-4">
+              <h3>Why It Feels Luxury</h3>
+              <p>A fixed couture base protects the perfumer’s vision. Curated modules give the consumer flexibility without turning the system into open DIY fragrance.</p>
+            </div>
+            <div class="mini-card mt-4">
+              <h3>Why AI Is Additive</h3>
+              <p>The Mood Translator behaves as a private curator. It guides selection and builds memory. It does not generate random scent formulas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal" id="consumer">
+      <div class="section-card">
+        <div class="section-number">03</div>
+        <h2>Target Audience Prioritization</h2>
+        <p>The first launch should not target everyone. It should target consumers already primed for premium experimentation and repeat interaction.</p>
+        <div class="three-col mt-8">
+          <div class="mini-card">
+            <h3>Primary Target</h3>
+            <p>Gen Z to younger millennials who want luxury signaling, personalization, and mood-based self-expression.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Secondary Target</h3>
+            <p>Existing exception fragrance buyers who want novelty and a more experiential relationship with one scent identity.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Retail Target</h3>
+            <p>Beauty advisors and prestige counters that benefit from higher-ticket consultation selling and repeat refill traffic.</p>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-item">
+            <div class="bar-label">Gen Z scent addiction</div>
+            <div class="bar-track"><div class="bar-fill" style="width:42.8%"></div></div>
+            <div class="bar-value">42.8%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">Gen Z understated chic</div>
+            <div class="bar-track"><div class="bar-fill" style="width:37.1%"></div></div>
+            <div class="bar-value">37.1%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">Gen Z social confidence</div>
+            <div class="bar-track"><div class="bar-fill" style="width:31.7%"></div></div>
+            <div class="bar-value">31.7%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">Millennial scent addiction</div>
+            <div class="bar-track"><div class="bar-fill" style="width:37.8%"></div></div>
+            <div class="bar-value">37.8%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal" id="economics">
+      <div class="section-card">
+        <div class="section-number">04</div>
+        <h2>Commercial Model</h2>
+        <p>The commercial logic is stronger than a normal prestige bottle because the system creates a two-layer revenue engine: premium starter kit plus recurring refills. That is the main product-management advantage.</p>
+        <div class="data-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Role</th>
+                <th>Illustrative Price</th>
+                <th>Strategic Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Starter bottle system</td>
+                <td>Base fragrance + hardware + starter capsules</td>
+                <td>$185 to $220</td>
+                <td>Premium entry point and margin anchor</td>
+              </tr>
+              <tr>
+                <td>Expression capsule refill</td>
+                <td>Mood or projection shift</td>
+                <td>$35 to $45</td>
+                <td>Recurring revenue and scent wardrobe behavior</td>
+              </tr>
+              <tr>
+                <td>Base refill</td>
+                <td>Main fragrance replenishment</td>
+                <td>$80 to $95</td>
+                <td>Sustainability story and repurchase</td>
+              </tr>
+              <tr>
+                <td>Private consultation tier</td>
+                <td>Advisor + AI profiling</td>
+                <td>Premium add-on</td>
+                <td>Higher spend and stronger lock-in</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="two-col mt-8">
+          <div>
+            <p><strong>Moderate model example.</strong> If the product reaches 1% of an estimated $2.1B North American luxury-exception opportunity, that implies roughly $21M in starter-system sales before refill revenue. A recurring refill layer materially improves lifetime value and lowers dependence on one-off bottle replacement.</p>
+          </div>
+          <div>
+            <p><strong>Cannibalization management.</strong> Even with a 30% worst-case assumption that some buyers would otherwise have purchased an existing prestige scent, the product still creates incremental value because it opens refill revenue and premium consultation behavior that a standard bottle does not create.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal">
+      <div class="section-card">
+        <div class="section-number">05</div>
+        <h2>Why the Product Is Feasible</h2>
+        <div class="three-col mt-6">
+          <div class="mini-card">
+            <h3>Engineering</h3>
+            <p>The challenge is controlled packaging integration, not impossible chemistry. The system relies on premium bottle engineering, metering precision, and reliable dosing.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Fragrance Logic</h3>
+            <p>The base composition remains fixed. Only tightly authored modules change expression. That keeps the creative architecture manageable and protects luxury coherence.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Operational Roadmap</h3>
+            <p>Phase 1 can launch with manual activation and app guidance. Phase 2 can add memory and smarter personalization only after the ritual proves demand.</p>
+          </div>
+        </div>
+        <div class="callout">This is important. The product becomes feasible once framed as staged packaging innovation with curated perfumery, not as real-time open fragrance synthesis.</div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal" id="dupes">
+      <div class="section-card">
+        <div class="section-number">06</div>
+        <h2>The Dupe Market Is a Threat and a Demand Signal</h2>
+        <p>Fragrance is the most duped beauty category. Dupe conversations in the US reached 220K online mentions and grew 49% year over year. The main reason is simple: consumers believe they can get the same value for less money. The dupe market is also no longer only about cheap copies. Higher-quality orientals and explicit dupe brands are growing faster than basic mass alternatives.</p>
+
+        <div class="four-col mt-8">
+          <div class="metric-card">
+            <div class="label">US Dupe Mentions</div>
+            <div class="value">220K</div>
+            <div class="sub">Fragrance dupe online mentions in the US.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">YoY Growth</div>
+            <div class="value">+49%</div>
+            <div class="sub">Annual increase in fragrance dupe discussion.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Main Driver</div>
+            <div class="value">59%</div>
+            <div class="sub">Same value for less money perception.</div>
+          </div>
+          <div class="metric-card">
+            <div class="label">Main Cluster</div>
+            <div class="value">33%</div>
+            <div class="sub">Masstige still leads, but growth is shifting upward in quality.</div>
+          </div>
+        </div>
+
+        <div class="two-col mt-8">
+          <div>
+            <h3 class="font-serif text-2xl mb-4">What dupes copy</h3>
+            <div class="bullet-list">
+              <div class="bullet-item"><span class="bullet-dot"></span><p>The scent profile and key ingredients.</p></div>
+              <div class="bullet-item"><span class="bullet-dot"></span><p>The concept and universe, including vibe, seasonality, and “old money” or “rich girl” codes.</p></div>
+              <div class="bullet-item"><span class="bullet-dot"></span><p>The product mix, including keywords, bottle cues, and recognizable visual language.</p></div>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-serif text-2xl mb-4">What consumers already know</h3>
+            <div class="bullet-list">
+              <div class="bullet-item"><span class="bullet-dot"></span><p>Many dupes fail on longevity and drydown quality.</p></div>
+              <div class="bullet-item"><span class="bullet-dot"></span><p>Cheap bottles reduce perceived luxury, especially in perfume.</p></div>
+              <div class="bullet-item"><span class="bullet-dot"></span><p>Social status, creator legitimacy, and psychological satisfaction still pull buyers back to originals.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal">
+      <div class="section-card">
+        <div class="section-number">07</div>
+        <h2>How Scent in Motion Works With and Against Dupes</h2>
+        <div class="three-col mt-8">
+          <div class="mini-card">
+            <h3>Against Dupes</h3>
+            <p>A dupe can copy one scent. It is far harder to copy a controlled system that combines base fragrance, expression modules, guided calibration, and repeat-use behavior.</p>
+          </div>
+          <div class="mini-card">
+            <h3>With Dupe Logic</h3>
+            <p>Dupes prove that consumers want variety, overspraying, mood-switching, and cheaper ways to extend wear. Scent in Motion can absorb that behavior inside a luxury-owned ecosystem.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Strategic Outcome</h3>
+            <p>The system changes the comparison point from “same scent for less” to “an experience and architecture you cannot replicate with a clone bottle.”</p>
+          </div>
+        </div>
+        <div class="callout">This is the core anti-dupe argument. Move the competition away from formula matching and into system value, ritual, data memory, and physical design.</div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal" id="risks">
+      <div class="section-card">
+        <div class="section-number">08</div>
+        <h2>Key Risks and Management Plan</h2>
+        <div class="data-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Risk</th>
+                <th>Why It Matters</th>
+                <th>Management</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Technology feels gimmicky</td>
+                <td>Luxury consumers reject visible novelty that weakens authorship.</td>
+                <td>Keep AI invisible, advisory, and secondary to the perfumer.</td>
+              </tr>
+              <tr>
+                <td>Cannibalization</td>
+                <td>Existing customers may shift from standard bottles.</td>
+                <td>Position the product above prestige and use capsule economics to create incrementality.</td>
+              </tr>
+              <tr>
+                <td>Execution complexity</td>
+                <td>Hardware failure would damage trust.</td>
+                <td>Launch with few modules, fixed formulations, and staged rollout.</td>
+              </tr>
+              <tr>
+                <td>Dupe response</td>
+                <td>Copycats can imitate scent families and visual cues.</td>
+                <td>Win on architecture, ritual, packaging quality, and proprietary system design.</td>
+              </tr>
+              <tr>
+                <td>Consumer learning curve</td>
+                <td>New behavior requires education.</td>
+                <td>Use in-store calibration, simple naming, and guided first-use journeys.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block scroll-reveal">
+      <div class="section-card">
+        <div class="section-number">09</div>
+        <h2>Bottom Line</h2>
+        <p>Scent in Motion fits where the market is moving. Luxury fragrance is growing. Younger consumers want identity, experimentation, and refill logic. The dupe market proves there is huge demand for modular scent behavior, even if the current answer is cheap substitution. This concept offers a stronger answer. It protects the perfume’s artistic core, builds repeat revenue, and creates a harder-to-copy system than a normal prestige bottle.</p>
+      </div>
+    </section>
+
+    <div class="page-footer scroll-reveal">
+      <div class="glass-panel">
+        <p class="text-gold text-xs tracking-[0.45em] uppercase mb-3">Research to Product Logic</p>
+        <p class="text-gray-300 leading-relaxed">This page is written as a synthesis layer. It turns the core research into a luxury-framed market argument that can sit beside your innovation, feasibility, scalability, or strategy pages.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorOutline = document.getElementById('cursor-outline');
+    if (window.innerWidth >= 768 && cursorDot && cursorOutline) {
+      window.addEventListener('mousemove', (e) => {
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
+        cursorOutline.style.left = (e.clientX - 20) + 'px';
+        cursorOutline.style.top = (e.clientY - 20) + 'px';
+      });
+    }
+  </script>
+</body>
+</html>
